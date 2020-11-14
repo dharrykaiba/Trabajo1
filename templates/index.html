@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 {% block title %}
-Home
+Bienvenido
 {% endblock %}
 {% block content %}
-<h1>Welcome!</h1>
-<form method="get" action="{{ url_for('search') }}">
-	<p><input type="text" name="nickname"></p>
-	<input type="submit" value="Search">
+
+<div class="col-md-5 mx-auto">
+<h1>Holaaa!</h1>
+<h5>Buscar Usuario</h5>
+<form method="get" action="{{ url_for('search') }} " class="form-group">
+	<div class="form-group">
+	<p><input class="form-control" type="text" name="nickname"></p>
+	<input class="form-control" type="submit" value="Buscar">
+	</div>
 </form>
+</div>
+
 {% endblock %}

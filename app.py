@@ -30,7 +30,7 @@ def search():
     if user:
         return user.username
 
-    return "The user doesn't exist."
+    return "El nombre de usuario no existe."
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -40,7 +40,7 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
 
-        flash("You've registered successfully.", "success")
+        flash("Te registraste satifactoriamente.", "success")
 
         return redirect(url_for("login"))
 
@@ -53,25 +53,29 @@ def login():
 
         if user and check_password_hash(user.password, request.form["password"]):
             session["username"] = user.username
-            return "You are logged in"
-        flash("Your credentials are invalid, check and try again.", "success")
+            flash("Hola " + user.username, "success")
+            return render_template("home.html")
+            #return "Abriste sesión correctamente."
+        flash("Datos incorrectos, verifique y vuelva a intentarlo.", "success")
 
     return render_template("login.html")
 
 @app.route("/home")
 def home():
     if "username" in session:
-        return "You are %s" % escape(session["username"])
-
-    return "You must log in first."
+        flash("Hola " + session["username"], "success")
+        #return "Tu eres %s" % escape(session["username"])
+    else:
+        flash("Primero debse iniciar sesion", "success")
+    return render_template("home.html")
 
 @app.route("/logout")
 def logout():
     session.pop("username", None)
 
-    return "You are logged out."
+    return "Cerraste sesión correctamente"
 
-app.secret_key = "12345"
+app.secret_key = "54321"
 
 
 if __name__ == "__main__":
