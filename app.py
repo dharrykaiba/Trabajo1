@@ -66,7 +66,7 @@ def home():
         flash("Hola " + session["username"], "success")
         #return "Tu eres %s" % escape(session["username"])
     else:
-        flash("Primero debse iniciar sesion", "success")
+        flash("Primero debe iniciar sesion", "success")
     return render_template("home.html")
 
 @app.route("/logout")
